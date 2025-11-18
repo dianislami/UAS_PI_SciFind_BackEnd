@@ -8,7 +8,12 @@ import os
 app = Flask(__name__)
 CORS(app, resources={
     r"/api/*": {
-        "origins": ["http://localhost:5173", "http://localhost:5000", "https://*.vercel.app"]
+        "origins": [
+            "http://localhost:5173", 
+            "http://localhost:5000", 
+            "https://*.vercel.app",
+            "https://uas-pi-sci-find.vercel.app"
+        ]
     }
 })
 
