@@ -1,4 +1,4 @@
-﻿from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 import json
 import numpy as np
@@ -8,7 +8,7 @@ import os
 app = Flask(__name__)
 CORS(app, resources={
     r"/api/*": {
-        "origins": ["http://localhost:5173", "https://*.vercel.app"]
+        "origins": ["http://localhost:5173", "http://localhost:5000", "https://*.vercel.app"]
     }
 })
 
@@ -159,7 +159,6 @@ def search():
 def health():
     return jsonify({"status": "ok"})
 
-def handler(request):
-    """Vercel serverless handler"""
-    with app.request_context(request.environ):
-        return app.full_dispatch_request()
+# Vercel serverless handler
+def handler(event, context):
+    return app(event, context)
